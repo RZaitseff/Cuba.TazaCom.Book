@@ -1,0 +1,4 @@
+auth.endpoint.uri,
+job.timeout, broadcast,
+score.factor, jpa.showSql,hibernate_show.sql
+

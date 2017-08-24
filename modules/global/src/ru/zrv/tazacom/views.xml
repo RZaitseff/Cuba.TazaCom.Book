@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="ru.zrv.tazacom.entity.Genre"
+          extends="_local"
+          name="genre-view">
+        <property name="books"
+                  view="_minimal">
+            <property name="author">
+                <property name="firstName"/>
+                <property name="middleName"/>
+                <property name="lastName"/>
+            </property>
+        </property>
+    </view>
+    <view class="ru.zrv.tazacom.entity.Book"
+          extends="_local"
+          name="book-view"
+          overwrite="true">
+        <property name="author"
+                  view="_minimal"/>
+        <property name="genre"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.zrv.tazacom.entity.Author"
+          extends="_local"
+          name="author-view"
+          overwrite="true">
+        <property name="books"
+                  view="_minimal">
+            <property name="state"/>
+            <property name="genre"
+                      view="_minimal"/>
+        </property>
+    </view>
+    <view class="ru.zrv.tazacom.entity.Importing"
+          extends="_local"
+          name="importing-view">
+    </view>
+</views>

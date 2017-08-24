@@ -1,0 +1,22 @@
+[{
+	"id": "0ae2a56c-5dd4-47ed-b230-690c11a786be",
+	"name": "Alice's Adventures in Wonderland",
+	"author": {
+		"id": "bdd6741d-71b9-493c-9c31-38 af19b9e27c",
+		"lastName": "Carroll",
+		"firstName": "Lewis"
+	},
+	"year": 1865,
+	"edition": 1,
+	"genreCollection": [
+{
+			"id": "f022820c-cb84-4981-9184-46b6f9a17de8",
+			"name": "Children's fiction"
+		},
+		{
+			"id": "94c06668-5214-4483-b99c-77d7aa7048b3",
+			"name": "Fiction"
+		}
+	]
+}]
+

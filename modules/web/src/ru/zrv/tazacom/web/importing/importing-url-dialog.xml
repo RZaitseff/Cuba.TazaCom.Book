@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://urlDialogCaption"
+        class="ru.zrv.tazacom.web.importing.ImportingUrlDialog"
+        messagesPack="ru.zrv.tazacom.web.importing">
+    <dsContext>
+        <datasource id="importingDs"
+                    class="ru.zrv.tazacom.entity.Importing"
+                    view="importing-view"/>
+        <collectionDatasource id="booksDs"
+                              class="ru.zrv.tazacom.entity.Book"
+                              view="book-view">
+            <query>
+                <![CDATA[select e from tazacom$Book e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="authorsDs"
+                              class="ru.zrv.tazacom.entity.Author"
+                              view="author-view">
+            <query>
+                <![CDATA[select e from tazacom$Author e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="genresDs"
+                              class="ru.zrv.tazacom.entity.Genre"
+                              view="genre-view">
+            <query>
+                <![CDATA[select e from tazacom$Genre e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="importingsDs"
+                              class="ru.zrv.tazacom.entity.Importing"
+                              view="importing-view">
+            <query>
+                <![CDATA[select e from tazacom$Importing e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                height="160"
+                modal="true"
+                resizable="true"
+                width="512"/>
+    <layout expand="buttonsBox"
+            spacing="true">
+        <label id="label"
+               value="Importing URL"/>
+        <textField id="urlString"
+                   width="100%"/>
+        <hbox id="buttonsBox"
+              align="TOP_CENTER"
+              spacing="true">
+            <button id="okBtn"
+                    caption="msg://OK"
+                    invoke="confirm"/>
+            <button id="callRestBtn"
+                    caption="msg://Вызов RESTful"
+                    description="Вызов RESTful сервиса импорта"
+                    invoke="callRest"/>
+            <button id="cancelBtn"
+                    caption="Cancel"
+                    invoke="cancel"/>
+        </hbox>
+    </layout>
+</window>

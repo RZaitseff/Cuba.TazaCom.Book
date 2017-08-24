@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.zrv.tazacom.web.importing.ImportingEdit"
+        datasource="importingDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.zrv.tazacom.web.importing">
+    <dsContext>
+        <datasource id="importingDs"
+                    class="ru.zrv.tazacom.entity.Importing"
+                    view="importing-view"/>
+    </dsContext>
+    <dialogMode forceDialog="true"
+                height="AUTO"
+                modal="true"
+                width="600"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="importingDs">
+            <column width="250px">
+                <field property="state"/>
+                <field property="url"/>
+                <field property="date"/>
+                <field property="quantity"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="extendedEditWindowActions"/>
+    </layout>
+</window>

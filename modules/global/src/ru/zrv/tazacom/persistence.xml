@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="Tazacom"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>ru.zrv.tazacom.entity.Author</class>
+        <class>ru.zrv.tazacom.entity.Genre</class>
+        <class>ru.zrv.tazacom.entity.Book</class>
+        <class>ru.zrv.tazacom.entity.Importing</class>
+    </persistence-unit>
+</persistence>

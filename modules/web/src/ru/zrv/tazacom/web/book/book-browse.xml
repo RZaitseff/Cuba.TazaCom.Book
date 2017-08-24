@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="ru.zrv.tazacom.web.book.BookBrowse"
+        focusComponent="booksTable"
+        lookupComponent="booksTable"
+        messagesPack="ru.zrv.tazacom.web.book">
+    <dsContext>
+        <datasource id="bookDs"
+                    class="ru.zrv.tazacom.entity.Book"
+                    view="book-view">
+            <groupDatasource id="genresDs"
+                             property="genre"/>
+        </datasource>
+        <groupDatasource id="booksDs"
+                         class="ru.zrv.tazacom.entity.Book"
+                         view="book-view">
+            <query>
+                <![CDATA[select e from tazacom$Book e]]>
+            </query>
+        </groupDatasource>
+        <groupDatasource id="authorsDs"
+                         class="ru.zrv.tazacom.entity.Author"
+                         view="author-view">
+            <query>
+                <![CDATA[select e from tazacom$Author e]]>
+            </query>
+        </groupDatasource>
+        <groupDatasource id="importingsDs"
+                         class="ru.zrv.tazacom.entity.Importing"
+                         view="importing-view">
+            <query>
+                <![CDATA[select e from tazacom$Importing e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <actions>
+        <action id="save"
+                caption="mainMsg://actions.Ok"
+                icon="icons/ok.png"
+                invoke="save"
+                shortcut="CTRL-ENTER"/>
+        <action id="cancel"
+                caption="mainMsg://actions.Cancel"
+                description="Esc"
+                icon="icons/cancel.png"
+                invoke="cancel"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <split id="split"
+               height="100%"
+               orientation="horizontal"
+               reversePosition="true"
+               width="1158px">
+            <vbox id="lookupBox"
+                  expand="booksTable"
+                  height="100%"
+                  margin="false,true,false,false"
+                  spacing="true">
+                <filter id="filter"
+                        applyTo="booksTable"
+                        datasource="booksDs">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="booksTable"
+                            height="300px"
+                            multiselect="true"
+                            textSelectionEnabled="true"
+                            width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="id"
+                                sortable="false"/>
+                        <column id="state"
+                                caption="состояние"
+                                collapsed="true"/>
+                        <column id="author"
+                                caption="Автор"/>
+                        <column id="name"
+                                caption="Название"/>
+                        <column id="year"
+                                caption="Год издания"/>
+                        <column id="edition"
+                                caption="Издание"/>
+                    </columns>
+                    <rows datasource="booksDs"/>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="Import"
+                                caption="Импорт"
+                                invoke="onImportClick"/>
+                        <button id="createBtn"
+                                action="booksTable.create"
+                                caption="Добавить"
+                                description="Добавить новую книгу"/>
+                        <button id="editBtn"
+                                action="booksTable.edit"
+                                caption="Редактировать"
+                                description="Редактировать текушую книгу"/>
+                        <button id="btnDeleteState"
+                                caption="Пометить как удалённую или потерянную"
+                                invoke="onBtnDeleteStateClick"/>
+                        <button id="removeBtn"
+                                action="booksTable.remove"
+                                caption="Удалить"
+                                description="Удалить из базы данных потерянную книгу"/>
+                    </buttonsPanel>
+                </groupTable>
+            </vbox>
+            <vbox id="editBox"
+                  height="100%"
+                  margin="false,false,false,true"
+                  spacing="true">
+                <vbox id="tabSheetBox"
+                      height="100%">
+                    <tabSheet id="tabSheet"
+                              height="100%">
+                        <tab id="mainTab"
+                             caption="msg://mainTab"
+                             margin="true">
+                            <fieldGroup id="fieldGroup"
+                                        datasource="bookDs">
+                                <column width="250px">
+                                    <field editable="false"
+                                           property="id"/>
+                                    <field caption="Состояние"
+                                           property="state"/>
+                                    <field caption="Автор"
+                                           optionsDatasource="authorsDs"
+                                           property="author"/>
+                                    <field caption="Название"
+                                           property="name"/>
+                                    <field caption="Год издания"
+                                           property="year"/>
+                                    <field caption="Издание"
+                                           property="edition"/>
+                                </column>
+                            </fieldGroup>
+                        </tab>
+                        <tab id="genreTab"
+                             caption="msg://Book genre"
+                             lazy="true"
+                             margin="true,false,false,false">
+                            <table id="genresTable"
+                                   height="200px"
+                                   multiselect="true"
+                                   width="100%">
+                                <actions>
+                                    <action id="add"/>
+                                    <action id="remove"/>
+                                </actions>
+                                <columns>
+                                    <column id="name"
+                                            editable="true"/>
+                                </columns>
+                                <rows datasource="genresDs"/>
+                                <rowsCount/>
+                                <buttonsPanel>
+                                    <button action="genresTable.add"
+                                            caption="msg://new"
+                                            height="32px"/>
+                                    <button action="genresTable.remove"
+                                            caption="msg://remove"/>
+                                </buttonsPanel>
+                            </table>
+                        </tab>
+                    </tabSheet>
+                </vbox>
+                <hbox id="actionsPane"
+                      spacing="true"
+                      visible="false">
+                    <button id="saveBtn"
+                            action="save"/>
+                    <button id="cancelBtn"
+                            action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
+    </layout>
+</window>

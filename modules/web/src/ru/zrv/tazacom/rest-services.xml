@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns="http://schemas.haulmont.com/cuba/restapi-service-v2.xsd">
+    <service name="tazacom_ImportService">
+        <method name="doImport">
+        	<param name="url" type="java.lang.String">file:BookList.Example.json</param>
+        </method>
+        <method name="doImportRest">
+        	<param name="url" type="java.lang.String">file:BookList.Example.json</param>
+        </method>
+    </service>
+</services>

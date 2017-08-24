@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="ru.zrv.tazacom.web.importing.ImportingBrowse"
+        focusComponent="importingsTable"
+        lookupComponent="importingsTable"
+        messagesPack="ru.zrv.tazacom.web.importing">
+    <dsContext>
+        <datasource id="importingDs"
+                    class="ru.zrv.tazacom.entity.Importing"
+                    view="importing-view"/>
+        <groupDatasource id="importingsDs"
+                         class="ru.zrv.tazacom.entity.Importing"
+                         view="importing-view">
+            <query>
+                <![CDATA[select e from tazacom$Importing e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <actions>
+        <action id="save"
+                caption="mainMsg://actions.Ok"
+                icon="icons/ok.png"
+                invoke="save"
+                shortcut="CTRL-ENTER"/>
+        <action id="cancel"
+                caption="mainMsg://actions.Cancel"
+                description="Esc"
+                icon="icons/cancel.png"
+                invoke="cancel"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <split id="split"
+               height="100%"
+               orientation="horizontal"
+               reversePosition="true"
+               width="100%">
+            <vbox id="lookupBox"
+                  expand="importingsTable"
+                  height="100%"
+                  margin="false,true,false,false"
+                  spacing="true">
+                <filter id="filter"
+                        applyTo="importingsTable"
+                        datasource="importingsDs">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="importingsTable"
+                            width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="state"/>
+                        <column id="url"/>
+                        <column id="date"/>
+                        <column id="quantity"/>
+                    </columns>
+                    <rows datasource="importingsDs"/>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn"
+                                action="importingsTable.create"/>
+                        <button id="editBtn"
+                                action="importingsTable.edit"/>
+                        <button id="removeBtn"
+                                action="importingsTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </vbox>
+            <vbox id="editBox"
+                  expand="fieldGroupBox"
+                  height="100%"
+                  margin="false,false,false,true"
+                  spacing="true">
+                <vbox id="fieldGroupBox">
+                    <fieldGroup id="fieldGroup"
+                                datasource="importingDs">
+                        <column width="250px">
+                            <field property="state"/>
+                            <field property="url"/>
+                            <field property="date"/>
+                            <field property="quantity"/>
+                        </column>
+                    </fieldGroup>
+                </vbox>
+                <hbox id="actionsPane"
+                      spacing="true"
+                      visible="false">
+                    <button id="saveBtn"
+                            action="save"/>
+                    <button id="cancelBtn"
+                            action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
+    </layout>
+</window>

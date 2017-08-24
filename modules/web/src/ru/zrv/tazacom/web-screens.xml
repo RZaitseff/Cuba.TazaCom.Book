@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <include file="ru/zrv/tazacom/screens.xml"/>
+    <screen id="tazacom$Genre.browse"
+            template="ru/zrv/tazacom/web/genre/genre-browse.xml"/>
+    <screen id="tazacom$Book.browse"
+            template="ru/zrv/tazacom/web/book/book-browse.xml"/>
+    <screen id="tazacom$importing.url-dialog"
+            template="ru/zrv/tazacom/web/importing/importing-url-dialog.xml"/>
+    <screen id="tazacom$Author.browse"
+            template="ru/zrv/tazacom/web/author/author-browse.xml"/>
+    <screen id="tazacom$Importing.browse"
+            template="ru/zrv/tazacom/web/importing/importing-browse.xml"/>
+    <screen id="tazacom$Importing.edit"
+            template="ru/zrv/tazacom/web/importing/importing-edit.xml"/>
+</screen-config>

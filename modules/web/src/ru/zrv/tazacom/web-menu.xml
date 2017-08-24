@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-tazacom"
+          insertBefore="administration">
+        <item screen="tazacom$Book.browse"/>
+        <item screen="tazacom$Author.browse"/>
+        <item screen="tazacom$Genre.browse"/>
+        <item screen="tazacom$Importing.browse"/>
+    </menu>
+</menu-config>

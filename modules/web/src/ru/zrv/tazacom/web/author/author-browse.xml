@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="ru.zrv.tazacom.web.author.AuthorBrowse"
+        focusComponent="authorsTable"
+        lookupComponent="authorsTable"
+        messagesPack="ru.zrv.tazacom.web.author">
+    <dsContext>
+        <datasource id="authorDs"
+                    class="ru.zrv.tazacom.entity.Author"
+                    view="author-view"/>
+        <groupDatasource id="authorsDs"
+                         class="ru.zrv.tazacom.entity.Author"
+                         view="author-view">
+            <query>
+                <![CDATA[select e from tazacom$Author e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <actions>
+        <action id="save"
+                caption="mainMsg://actions.Ok"
+                icon="icons/ok.png"
+                invoke="save"
+                shortcut="CTRL-ENTER"/>
+        <action id="cancel"
+                caption="mainMsg://actions.Cancel"
+                description="Esc"
+                icon="icons/cancel.png"
+                invoke="cancel"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <split id="split"
+               height="100%"
+               orientation="horizontal"
+               reversePosition="true"
+               width="100%">
+            <vbox id="lookupBox"
+                  expand="authorsTable"
+                  height="100%"
+                  margin="false,true,false,false"
+                  spacing="true">
+                <filter id="filter"
+                        applyTo="authorsTable"
+                        datasource="authorsDs">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="authorsTable"
+                            editable="true"
+                            multiselect="true"
+                            width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="state"
+                                collapsed="true"/>
+                        <column id="firstName"/>
+                        <column id="middleName"/>
+                        <column id="lastName"/>
+                    </columns>
+                    <rows datasource="authorsDs"/>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn"
+                                action="authorsTable.create"/>
+                        <button id="editBtn"
+                                action="authorsTable.edit"/>
+                        <button id="removeBtn"
+                                action="authorsTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </vbox>
+            <vbox id="editBox"
+                  expand="fieldGroupBox"
+                  height="100%"
+                  margin="false,false,false,true"
+                  spacing="true">
+                <vbox id="fieldGroupBox">
+                    <fieldGroup id="fieldGroup"
+                                datasource="authorDs">
+                        <column width="250px">
+                            <field property="state"/>
+                            <field property="firstName"/>
+                            <field property="middleName"/>
+                            <field property="lastName"/>
+                        </column>
+                    </fieldGroup>
+                </vbox>
+                <hbox id="actionsPane"
+                      spacing="true"
+                      visible="false">
+                    <button id="saveBtn"
+                            action="save"/>
+                    <button id="cancelBtn"
+                            action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
+    </layout>
+</window>

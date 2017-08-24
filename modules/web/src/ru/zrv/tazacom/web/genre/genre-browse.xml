@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="ru.zrv.tazacom.web.genre.GenreBrowse"
+        focusComponent="genresTable"
+        lookupComponent="genresTable"
+        messagesPack="ru.zrv.tazacom.web.genre">
+    <dsContext>
+        <datasource id="genreDs"
+                    class="ru.zrv.tazacom.entity.Genre"
+                    view="genre-view">
+            <groupDatasource id="booksDs"
+                             property="books"/>
+        </datasource>
+        <groupDatasource id="genresDs"
+                         class="ru.zrv.tazacom.entity.Genre"
+                         view="genre-view">
+            <query>
+                <![CDATA[select e from tazacom$Genre e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <actions>
+        <action id="save"
+                caption="mainMsg://actions.Ok"
+                icon="icons/ok.png"
+                invoke="save"
+                shortcut="CTRL-ENTER"/>
+        <action id="cancel"
+                caption="mainMsg://actions.Cancel"
+                description="Esc"
+                icon="icons/cancel.png"
+                invoke="cancel"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <split id="split"
+               height="100%"
+               orientation="horizontal"
+               reversePosition="true"
+               width="100%">
+            <vbox id="lookupBox"
+                  expand="genresTable"
+                  height="100%"
+                  margin="false,true,false,false"
+                  spacing="true">
+                <filter id="filter"
+                        applyTo="genresTable"
+                        datasource="genresDs">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="genresTable"
+                            editable="true"
+                            multiselect="true"
+                            width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="state"
+                                collapsed="true"/>
+                        <column id="name"/>
+                    </columns>
+                    <rows datasource="genresDs"/>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn"
+                                action="genresTable.create"/>
+                        <button id="editBtn"
+                                action="genresTable.edit"/>
+                        <button id="removeBtn"
+                                action="genresTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </vbox>
+            <vbox id="editBox"
+                  expand="tabSheetBox"
+                  height="100%"
+                  margin="false,false,false,true"
+                  spacing="true">
+                <vbox id="tabSheetBox">
+                    <tabSheet id="tabSheet"
+                              height="100%">
+                        <tab id="mainTab"
+                             caption="msg://mainTab"
+                             margin="true">
+                            <fieldGroup id="fieldGroup"
+                                        datasource="genreDs">
+                                <column width="250px">
+                                    <field property="state"/>
+                                    <field property="name"/>
+                                </column>
+                            </fieldGroup>
+                        </tab>
+                        <tab id="booksTab"
+                             caption="Book List of the genre"
+                             margin="true,false,false,false">
+                            <table id="booksTable"
+                                   height="200px"
+                                   width="100%">
+                                <actions>
+                                    <action id="add"/>
+                                    <action id="remove"/>
+                                </actions>
+                                <columns>
+                                    <column id="author"/>
+                                    <column id="name"/>
+                                    <column id="year"/>
+                                    <column id="edition"/>
+                                </columns>
+                                <rows datasource="booksDs"/>
+                                <buttonsPanel>
+                                    <button action="booksTable.add"/>
+                                    <button action="booksTable.remove"/>
+                                </buttonsPanel>
+                            </table>
+                        </tab>
+                    </tabSheet>
+                </vbox>
+                <hbox id="actionsPane"
+                      spacing="true"
+                      visible="false">
+                    <button id="saveBtn"
+                            action="save"/>
+                    <button id="cancelBtn"
+                            action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
+    </layout>
+</window>
