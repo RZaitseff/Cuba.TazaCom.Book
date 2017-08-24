@@ -14,5 +14,6 @@ Presentation of Java EE developing  by using CUBA platform
 Техническую информацию см. здесь же в документе TechnicalDescription.doc
 
 Исходный код проекта заархивирован в файле: Tazacom.zip
-Готовый деплой на Tomcat-сервер находится в файле: Tazacom.Tomcat.deploy.zip
+Готовый деплой на Tomcat-сервер находится в файле: Tomcat.deploy.webapps.zip
+
 
