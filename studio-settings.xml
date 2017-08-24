@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<studio>
+    <settings>
+        <showInfoOutdatedScheme>false</showInfoOutdatedScheme>
+    </settings>
+    <dbScripts>
+        <excludes>
+            <hsql>
+            </hsql>
+        </excludes>
+    </dbScripts>
+</studio>
